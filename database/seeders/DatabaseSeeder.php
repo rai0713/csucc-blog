@@ -15,9 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->admin()->create([
-            'name' => 'Blog Admin',
+        User::query()->firstOrCreate([
             'email' => 'admin@csucc-blog.test',
+        ], [
+            'name' => 'Blog Admin',
+            'password' => bcrypt('password'),
+            'role' => 'admin',
         ]);
 
         $this->call(PostSeeder::class);

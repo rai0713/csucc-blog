@@ -10,6 +10,10 @@ class PostSeeder extends Seeder
 {
     public function run(): void
     {
+        if (Post::query()->exists()) {
+            return;
+        }
+
         $admin = User::query()->where('role', 'admin')->first();
 
         if (! $admin) {
