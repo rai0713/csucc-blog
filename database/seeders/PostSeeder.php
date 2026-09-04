@@ -20,7 +20,7 @@ class PostSeeder extends Seeder
             $admin = User::factory()->admin()->create();
         }
 
-        Post::query()->createMany([
+        $demoPosts = [
             [
                 'user_id' => $admin->id,
                 'title' => 'Welcome to CSUCC Blog',
@@ -45,6 +45,10 @@ class PostSeeder extends Seeder
                 'body' => 'This sample post shows how published content appears on the blog homepage.',
                 'published_at' => now(),
             ],
-        ]);
+        ];
+
+        foreach ($demoPosts as $demoPost) {
+            Post::query()->create($demoPost);
+        }
     }
 }
